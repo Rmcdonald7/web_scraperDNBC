@@ -20,7 +20,7 @@ dc = DesiredCapabilities.CHROME
 dc['goog:loggingPrefs'] = { 'browser':'ALL' }
 
 # set up driver
-service= Service("C:/Users/rmcdo/OneDrive/Desktop/Chrome Webdriver/chromedriver")
+service= Service("C:/Users...Webdriver/chromedriver")
 op = webdriver.ChromeOptions()
 driver = webdriver.Chrome(service=service, desired_capabilities=dc, options=op)
 
@@ -51,19 +51,19 @@ def run_driver(row):
             return True
 
 # list of new column
-validity_value=[]
+address_validity=[]
 
 
 # run script with csv data- creates new column of valid/invalid addresses
 for index, row in address_df.iterrows():
     if run_driver(row=row) == False:
-        validity_value.append('Invalid')
+        address_validity.append('Invalid')
     else:
-        validity_value.append('Valid Address')
+        address_validity.append('Valid Address')
 driver.quit()
 
 # add column of validity to addresses
-address_df['Validity'] = validity_value
+address_df['Validity'] = address_validity
 
 #write new csv_file with new column
 address_df.to_csv('finished.csv')
